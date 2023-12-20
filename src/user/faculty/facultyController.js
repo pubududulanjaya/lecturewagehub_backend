@@ -19,4 +19,18 @@ const facultycreateUserControllerFn = async (req, res) => {
     }
 }
 
-module.exports = { facultycreateUserControllerFn, facultygetDataConntrollerfn };
+const facultyUpdateUserControllerFn = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const userDetails = req.body;
+
+        const updatedFaculty = await userService.updateUserDBService(id, userDetails);
+        
+        res.send({ "status": true, "message": "Faculty updated successfully", "data": updatedFaculty });
+    } catch (error) {
+        res.status(500).send({ "status": false, "message": "Error updating Faculty" });
+    }
+}
+
+module.exports = { facultycreateUserControllerFn, facultygetDataConntrollerfn, facultyUpdateUserControllerFn };
+

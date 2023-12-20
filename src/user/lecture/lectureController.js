@@ -8,15 +8,15 @@ var lecturegetDataConntrollerfn = async (req, res) =>
 }
 
 
-var lecturecreateUserControllerFn = async (req, res) => 
-{
-    var status = await userService.createUserDBService(req.body);
-    if (status) {
+var lecturecreateUserControllerFn = async (req, res) => {
+    try {
+        var status = await userService.createUserDBService(req.body);
         res.send({ "status": true, "message": "User created successfully" });
-    } else {
+    } catch (error) {
         res.send({ "status": false, "message": "Error creating user" });
     }
 }
+
 var updatelectureUserControllerFn = async (req, res) => 
 {
     console.log(req.params.id);

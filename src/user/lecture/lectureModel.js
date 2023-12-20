@@ -92,7 +92,16 @@ var userSchema = new Schema({
       required: true
   },
 
+   // New fields for file uploads
+   profileImage: {
+    type: String
+},
+
+cv: {
+    type: String
+},
 });
+
 
 // Define a virtual property to determine whether MonthlyPayment or RatePerHour should be null
 userSchema.virtual('isHourlySalary').get(function () {

@@ -15,49 +15,39 @@ router.route('/user/delete/:id').delete(userController.deleteUserController);
 module.exports = router; 
 
 
-
+//hod
 var hoduserController = require('../src/user/hod/hoduserController');
-
-
-
 router.route('/hoduser/create').post(hoduserController.hodcreateUserControllerFn);
-
-
 module.exports = router; 
 
 
+//lecturer
 var lectureController = require('../src/user/lecture/lectureController');
-
-
-
 router.route('/lectureDetails/create').post(lectureController.lecturecreateUserControllerFn);
 router.route('/lectureDetails/getAll').get(lectureController.lecturegetDataConntrollerfn);
 router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
 module.exports = router;
+
+
 //batch
 var batchController = require('../src/user/batch/batchController');
 router.route('/batch/create').post(batchController.batchcreateUserControllerFn);
-
 module.exports = router; 
+
 
 //module
 const moduleController = require('../src/user/module/moduleController');
-
 router.route('/module/create').post(moduleController.modulecreateUserControllerFn);
 router.route('/module/getAll').get(moduleController.modulegetDataConntrollerfn);
-
 module.exports = router;
+
+
 //other payments
 var paymentController = require('../src/user/payment/paymentController');
 router.route('/payment/create').post(paymentController.paymentcreateUserControllerFn);
-
 module.exports = router; 
 
-//addfaculty
-var facultyController = require('../src/user/faculty/facultyController');
-router.route('/faculty/create').post(facultyController.facultycreateUserControllerFn);
-router.route('/faculty/getAll').get(facultyController.facultygetDataConntrollerfn);
-module.exports = router;
+
 
 
 
@@ -65,4 +55,5 @@ module.exports = router;
 var facultyController = require('../src/user/faculty/facultyController');
 router.route('/faculty/create').post(facultyController.facultycreateUserControllerFn);
 router.route('/faculty/getAll').get(facultyController.facultygetDataConntrollerfn);
+router.route('/faculty/update/:id').patch(facultyController.facultyUpdateUserControllerFn);
 module.exports = router;

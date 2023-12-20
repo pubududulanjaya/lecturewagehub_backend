@@ -8,7 +8,6 @@ module.exports.createUserDBService = (userDetails) => {
     return new Promise(function myFn(resolve, reject) {
         var userModelData = new userModel();
         
-         
         userModelData.lecturerId = userDetails.lecturerId;
         userModelData.LecturerName = userDetails.LecturerName;
         userModelData.Title = userDetails.Title;
@@ -27,6 +26,10 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.bankCode = userDetails.bankCode;
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
+
+          // Handle file uploads
+          userModelData.profileImage = userDetails.profileImage || '';
+          userModelData.cv = userDetails.cv || '';
 
         userModelData.save()
             .then(result => {

@@ -27,13 +27,19 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.bankCode = userDetails.bankCode;
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
+        userModelData.cv = userDetails.cv;
+        userModelData.profilePicture = userDetails.profilePicture;
 
         userModelData.save()
             .then(result => {
                 resolve(result);
             })
             .catch(error => {
-                reject(error);
+                if (error.name === 'ValidationError') {
+                    reject({ validationError: true, message: error.message });
+                } else {
+                    reject(error);
+                }
             });
     });
 }
@@ -41,11 +47,14 @@ module.exports.createUserDBService = (userDetails) => {
 
 
 module.exports.updateUserDBService = (Id, userDetails) => {
-    console.log(userDetails);
-    return new Promise(function myFn(resolve, reject) {
-        userModel.findByIdAndUpdate(Id, userDetails, { new: true }) // { new: true } returns the updated document
+    return new Promise((resolve, reject) => {
+        userModel.findByIdAndUpdate(Id, userDetails, { new: true })
             .then(result => {
-                resolve(result);
+                if (result) {
+                    resolve(result);
+                } else {
+                    reject({ notFound: true, message: "User not found" });
+                }
             })
             .catch(error => {
                 reject(error);

@@ -92,6 +92,17 @@ var userSchema = new Schema({
       required: true
   },
 
+  cv: {
+    type: String,
+    required: true
+},
+
+profilePicture: {
+    type: String,
+    required: true
+},
+
+
 });
 
 // Define a virtual property to determine whether MonthlyPayment or RatePerHour should be null

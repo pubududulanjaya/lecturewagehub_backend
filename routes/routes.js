@@ -5,6 +5,9 @@ const router = express.Router();
 
 const loginController = require('../src/user/login/loginController');
 router.route('/login').post(loginController.loginUserControllerFn);
+router.route('/login/save').post(loginController.saveLoginControllerFn);
+
+
 
 const userController = require('../src/user/userController');
 router.route('/user/getAll').get(userController.getDataConntrollerfn);

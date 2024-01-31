@@ -73,3 +73,7 @@ module.exports.removeUserDBService = (lecturerId) => {
             });
     });
 }
+
+module.exports.getLecturerByNameService = (LecturerName) => {
+    return userModel.findOne({ LecturerName: LecturerName }).exec();
+}

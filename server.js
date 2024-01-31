@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,38 +19,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/Lecturewagehub', {
     console.log('Error:', error);
   });
 
-// Define a simple user model
-const UserSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-});
-
-const UserModel = mongoose.model('User', UserSchema);
-
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// Routes
 app.use(routes);
 
-
-
-// Add your login endpoint
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-
-  // Find the user in the database
-  UserModel.findOne({ username, password }, (err, user) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
-
-    if (user) {
-      res.json({ success: true, message: 'Login successful', usertype: user.usertype });
-    } else {
-      res.json({ success: false, message: 'Invalid username or password' });
-    }
-  });
-});
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

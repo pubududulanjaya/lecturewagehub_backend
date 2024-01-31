@@ -1,14 +1,13 @@
 // loginController.js
-
 const Login = require('./loginModel');
 
 async function loginUserControllerFn(req, res) {
-  const { username, password } = req.body;
+  const { username, password, usertype, Department } = req.body;
 
   try {
-    const user = await Login.findOne({ username, password });
+    const user = await Login.findOne({ username, password, });
     if (user) {
-      res.json({ success: true, message: 'Login successful', usertype: user.usertype });
+      res.json({ success: true, message: 'Login successful', usertype: user.usertype, Department: user.Department });
     } else {
       res.json({ success: false, message: 'Invalid username or password' });
     }
@@ -19,7 +18,7 @@ async function loginUserControllerFn(req, res) {
 }
 
 async function saveLoginControllerFn(req, res) {
-  const { username, password, usertype,Department } = req.body;
+  const { username, password, usertype, Department } = req.body;
 
   try {
     const login = new Login({

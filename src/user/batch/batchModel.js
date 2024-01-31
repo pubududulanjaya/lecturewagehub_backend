@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-
     DegreeName: {
         type: String,
         required: true
@@ -10,8 +9,7 @@ var userSchema = new Schema({
     BatchNo: {
         type: String,
         required: true
-    },
-   
+    }
 });
 
 module.exports = mongoose.model('batch', userSchema);

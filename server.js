@@ -1,23 +1,32 @@
-var express = require('express');
-var server = express();
-var routes = require('./routes/routes');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const routes = require('./routes/routes');
 
-mongoose.connect("mongodb://127.0.0.1:27017/Lecturewagehub").then(() => {
-    console.log("DB Connectedddd!!!!!!!!!!!");
-}).catch((error) => {
-    console.log("errorr", error);
-});
+const app = express();
+const PORT = process.env.PORT || 8000;
 
-server.use(cors());
-server.use(express.json());
-server.use(routes);
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/Lecturewagehub', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('DB Connected!');
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+  });
 
-server.listen(8000, function check(error) {
-    if (error) {
-        console.log("errorr");
-    } else {
-        console.log("startedddddd");
-    }
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Routes
+app.use(routes);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

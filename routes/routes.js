@@ -1,68 +1,47 @@
-var express = require('express');
-
+const express = require('express');
 const router = express.Router();
 
-var userController = require('../src/user/userController');
+// Import controllers
+const loginController = require('../src/user/login/loginController');
+const userController = require('../src/user/userController');
+const hoduserController = require('../src/user/hod/hoduserController');
+const lectureController = require('../src/user/lecture/lectureController');
+const batchController = require('../src/user/batch/batchController');
+const moduleController = require('../src/user/module/moduleController');
+const paymentController = require('../src/user/payment/paymentController');
+const facultyController = require('../src/user/faculty/facultyController');
 
-router.route('/user/getAll').get(userController.getDataConntrollerfn);
+// User Routes
+router.post('/login', loginController.loginUserControllerFn);
+router.post('/login/save', loginController.saveLoginControllerFn);
+router.get('/user/getAll', userController.getDataConntrollerfn);
+router.post('/user/create', userController.createUserControllerFn);
+router.patch('/user/update/:id', userController.updateUserController);
+router.delete('/user/delete/:id', userController.deleteUserController);
 
-router.route('/user/create').post(userController.createUserControllerFn);
+// HOD User Routes
+router.post('/hoduser/create', hoduserController.hodcreateUserControllerFn);
 
-router.route('/user/update/:id').patch(userController.updateUserController);
-
-router.route('/user/delete/:id').delete(userController.deleteUserController);
-
-module.exports = router; 
-
-
-
-var hoduserController = require('../src/user/hod/hoduserController');
-
-
-
-router.route('/hoduser/create').post(hoduserController.hodcreateUserControllerFn);
-
-
-module.exports = router; 
-
-
-var lectureController = require('../src/user/lecture/lectureController');
-
-
-
+// Lecture Routes
 router.route('/lectureDetails/create').post(lectureController.lecturecreateUserControllerFn);
 router.route('/lectureDetails/getAll').get(lectureController.lecturegetDataConntrollerfn);
 router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
 module.exports = router;
-//batch
-var batchController = require('../src/user/batch/batchController');
-router.route('/batch/create').post(batchController.batchcreateUserControllerFn);
 
-module.exports = router; 
+// Batch Routes
+router.post('/addBatch/:Department', batchController.batchcreateUserControllerFn);
 
-//module
-const moduleController = require('../src/user/module/moduleController');
+// Module Routes
+router.post('/module/create', moduleController.modulecreateUserControllerFn);
+router.get('/module/getAll', moduleController.modulegetDataConntrollerfn);
 
-router.route('/module/create').post(moduleController.modulecreateUserControllerFn);
-router.route('/module/getAll').get(moduleController.modulegetDataConntrollerfn);
+// Payment Routes
+router.post('/payment/create', paymentController.paymentcreateUserControllerFn);
+router.get('/payment', paymentController.getPaymentsByLecturerNameControllerFn);
 
-module.exports = router;
-//other payments
-var paymentController = require('../src/user/payment/paymentController');
-router.route('/payment/create').post(paymentController.paymentcreateUserControllerFn);
+// Faculty Routes
+router.post('/faculty/create', facultyController.facultycreateUserControllerFn);
+router.get('/faculty/getAll', facultyController.facultygetDataConntrollerfn);
+router.patch('/faculty/update/:id', facultyController.facultyUpdateUserControllerFn);
 
-module.exports = router; 
-
-//addfaculty
-var facultyController = require('../src/user/faculty/facultyController');
-router.route('/faculty/create').post(facultyController.facultycreateUserControllerFn);
-router.route('/faculty/getAll').get(facultyController.facultygetDataConntrollerfn);
-module.exports = router;
-
-
-
-//addfaculty
-var facultyController = require('../src/user/faculty/facultyController');
-router.route('/faculty/create').post(facultyController.facultycreateUserControllerFn);
-router.route('/faculty/getAll').get(facultyController.facultygetDataConntrollerfn);
 module.exports = router;

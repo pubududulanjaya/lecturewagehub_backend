@@ -29,7 +29,7 @@ var userSchema = new Schema({
     },
     UserType: {
         type: String,
-        required: 'hod'
+        required: 'HOD'
     },
    
 });

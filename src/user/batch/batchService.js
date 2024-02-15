@@ -10,6 +10,7 @@ module.exports.createUserDBService = (userDetails) => {
 
         userModelData.DegreeName = userDetails.DegreeName;
         userModelData.BatchNo = userDetails.BatchNo;
+        userModelData.Department = userDetails.Department;
 
         userModelData.save()
             .then(result => {

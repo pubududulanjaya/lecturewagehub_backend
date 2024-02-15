@@ -23,12 +23,10 @@ router.delete('/user/delete/:id', userController.deleteUserController);
 router.post('/hoduser/create', hoduserController.hodcreateUserControllerFn);
 
 // Lecture Routes
-router.post('/lectureDetails/create', lectureController.lecturecreateUserControllerFn);
-router.get('/lectureDetails/getAll', lectureController.lecturegetDataConntrollerfn);
-router.patch('/lectureDetails/update/:LecturerName', lectureController.updatelectureUserControllerFn);
-router.get('/lectureDetails/:name', lectureController.getLecturerByNameControllerFn);
-
-
+router.route('/lectureDetails/create').post(lectureController.lecturecreateUserControllerFn);
+router.route('/lectureDetails/getAll').get(lectureController.lecturegetDataConntrollerfn);
+router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
+module.exports = router;
 
 // Batch Routes
 router.post('/addBatch/:Department', batchController.batchcreateUserControllerFn);

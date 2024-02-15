@@ -27,19 +27,15 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.bankCode = userDetails.bankCode;
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
-        userModelData.cv = userDetails.cv;
-        userModelData.profilePicture = userDetails.profilePicture;
+        userModelData.Department = userDetails.Department;
+
 
         userModelData.save()
             .then(result => {
                 resolve(result);
             })
             .catch(error => {
-                if (error.name === 'ValidationError') {
-                    reject({ validationError: true, message: error.message });
-                } else {
-                    reject(error);
-                }
+                reject(error);
             });
     });
 }
@@ -47,14 +43,11 @@ module.exports.createUserDBService = (userDetails) => {
 
 
 module.exports.updateUserDBService = (Id, userDetails) => {
-    return new Promise((resolve, reject) => {
-        userModel.findByIdAndUpdate(Id, userDetails, { new: true })
+    console.log(userDetails);
+    return new Promise(function myFn(resolve, reject) {
+        userModel.findByIdAndUpdate(Id, userDetails, { new: true }) // { new: true } returns the updated document
             .then(result => {
-                if (result) {
-                    resolve(result);
-                } else {
-                    reject({ notFound: true, message: "User not found" });
-                }
+                resolve(result);
             })
             .catch(error => {
                 reject(error);
@@ -72,8 +65,4 @@ module.exports.removeUserDBService = (lecturerId) => {
                 reject(error);
             });
     });
-}
-
-module.exports.getLecturerByNameService = (LecturerName) => {
-    return userModel.findOne({ LecturerName: LecturerName }).exec();
 }

@@ -9,6 +9,10 @@ var userSchema = new Schema({
     BatchNo: {
         type: String,
         required: true
+    },
+    Department: {
+        type: String,
+        required: true
     }
 });
 

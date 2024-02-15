@@ -28,6 +28,7 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
         userModelData.Department = userDetails.Department;
+       
 
 
         userModelData.save()

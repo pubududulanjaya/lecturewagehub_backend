@@ -26,6 +26,7 @@ router.post('/hoduser/create', hoduserController.hodcreateUserControllerFn);
 router.route('/lectureDetails/create').post(lectureController.lecturecreateUserControllerFn);
 router.route('/lectureDetails/getAll').get(lectureController.lecturegetDataConntrollerfn);
 router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
+
 module.exports = router;
 
 // Batch Routes

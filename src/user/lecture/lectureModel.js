@@ -91,6 +91,10 @@ var userSchema = new Schema({
       type: String,
       required: true
   },
+  Request_State:{
+    type: String,
+      required: true
+  },
   Department:{
     type: String,
       required: true

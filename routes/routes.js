@@ -25,12 +25,13 @@ router.post('/hoduser/create', hoduserController.hodcreateUserControllerFn);
 // Lecture Routes
 router.route('/lectureDetails/create').post(lectureController.lecturecreateUserControllerFn);
 router.route('/lectureDetails/getAll').get(lectureController.lecturegetDataConntrollerfn);
-router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
+// router.route('/lectureDetails/update/:LecturerName').patch(lectureController.updatelectureUserControllerFn);
+router.route('/lectureDetails/update/:id').patch(lectureController.updatelectureUserControllerFn);
 
 module.exports = router;
 
 // Batch Routes
-router.post('/addBatch/:Department', batchController.batchcreateUserControllerFn);
+router.post('/addBatch/create', batchController.batchcreateUserControllerFn);
 
 // Module Routes
 router.post('/module/create', moduleController.modulecreateUserControllerFn);

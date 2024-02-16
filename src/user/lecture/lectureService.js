@@ -27,6 +27,7 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.bankCode = userDetails.bankCode;
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
+        userModelData.Request_State = userDetails.Request_State;
         userModelData.Department = userDetails.Department;
        
 

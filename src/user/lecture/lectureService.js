@@ -47,7 +47,7 @@ module.exports.createUserDBService = (userDetails) => {
 module.exports.updateUserDBService = (Id, userDetails) => {
     console.log(userDetails);
     return new Promise(function myFn(resolve, reject) {
-        userModel.findByIdAndUpdate(Id, userDetails, { new: true }) // { new: true } returns the updated document
+        userModel.findByIdAndUpdate(Id, userDetails, { new: true })
             .then(result => {
                 resolve(result);
             })

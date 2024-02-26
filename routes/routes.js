@@ -46,4 +46,12 @@ router.post('/faculty/create', facultyController.facultycreateUserControllerFn);
 router.get('/faculty/getAll', facultyController.facultygetDataConntrollerfn);
 router.patch('/faculty/update/:id', facultyController.facultyUpdateUserControllerFn);
 
+
+//timetable
+const timetableController = require('../src/user/timetable/timetableController');
+router.route('/timetable/create').post(timetableController.timetableCreateUserControllerFn);
+router.route('/timetable/getAll').get(timetableController.timetableGetDataControllerFn);
+
 module.exports = router;
+
+

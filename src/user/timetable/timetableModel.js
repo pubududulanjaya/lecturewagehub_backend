@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
     date: {
         type: String,
         required: true
@@ -18,11 +18,11 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
-    timeInterval:{
-        type:String,
-        required:true
+    timeInterval: {
+        type: String,
+        required: true
     },
-    lecturer: {
+    LecturerName: {
         type: String,
         required: true
     },
@@ -30,11 +30,15 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
-    Department:{
+    Department: {
         type: String,
-          required: true
-      }
+        required: true
+    },
+    RatePerHour:{
+        type:String,
+        required:true
     
+    }
 });
 
 module.exports = mongoose.model('Timetable', userSchema);

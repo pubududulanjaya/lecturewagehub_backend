@@ -1,16 +1,31 @@
-var timetableService = require('./timetableService');
+const timetableService = require('./timetableService');
 
-var timetableCreateUserControllerFn = async (req, res) => {
+exports.timetableCreateControllerFn = async (req, res) => {
     try {
-        var status = await timetableService.createUserDBService(req.body);
+        await timetableService.createTimetableForLecturer(req.body);
         res.send({ "status": true, "message": "Timetable created successfully" });
     } catch (error) {
         console.error(error);
-        res.send({ "status": false, "message": "Error creating Timetable" });
+        res.status(500).send({ "status": false, "message": "Error creating Timetable" });
     }
-}
+};
 
-const timetableGetDataControllerFn = async (req, res) => {
+exports.timetableGetDataByLecturerNameControllerFn = async (req, res) => {
+    try {
+        const LecturerName = req.query.LecturerName;
+        const timetables = await timetableService.getTimetableDataByLecturerName(LecturerName);
+        if (timetables.length > 0) {
+            res.send({ "status": true, "data": timetables });
+        } else {
+            res.status(404).send({ "status": false, "message": "Timetable not found for the specified lecturer" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ "status": false, "message": "Internal Server Error" });
+    }
+};
+
+exports.timetableGetDataControllerFn = async (req, res) => {
     try {
         const timetables = await timetableService.getDataFromDBService();
         res.send({ "status": true, "data": timetables });
@@ -18,6 +33,4 @@ const timetableGetDataControllerFn = async (req, res) => {
         console.error(error);
         res.status(500).send({ "status": false, "message": "Internal Server Error" });
     }
-}
-
-module.exports = { timetableCreateUserControllerFn, timetableGetDataControllerFn };
+};

@@ -1,43 +1,48 @@
-var timetableModel = require('./timetableModel');
+const timetableModel = require('./timetableModel');
 
-module.exports.getDataFromDBService = () => {
-    return timetableModel.find({}).exec();
-}
+exports.createTimetableForLecturer = async (timetableDetails) => {
+    try {
+        const timetableModelData = new timetableModel(timetableDetails);
+        await timetableModelData.save();
+        return true;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
-module.exports.createUserDBService = (timetableDetails) => {
-    return new Promise((resolve, reject) => {
-        var timetableModelData = new timetableModel(timetableDetails);
+exports.getTimetableDataByLecturerName = async (lecturerName) => {
+    try {
+        return await timetableModel.find({ LecturerName: lecturerName }).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
-        timetableModelData.save()
-            .then(result => {
-                resolve(result);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+exports.getDataFromDBService = async () => {
+    try {
+        return await timetableModel.find({}).exec();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
-module.exports.updateUserDBService = (id, timetableDetails) => {
-    return new Promise((resolve, reject) => {
-        timetableModel.findByIdAndUpdate(id, timetableDetails, { new: true })
-            .then(result => {
-                resolve(result);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+exports.updateUserDBService = async (id, timetableDetails) => {
+    try {
+        return await timetableModel.findByIdAndUpdate(id, timetableDetails, { new: true });
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
-module.exports.removeUserDBService = (id) => {
-    return new Promise((resolve, reject) => {
-        timetableModel.findByIdAndDelete(id)
-            .then(result => {
-                resolve(result);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+exports.removeUserDBService = async (id) => {
+    try {
+        return await timetableModel.findByIdAndDelete(id);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};

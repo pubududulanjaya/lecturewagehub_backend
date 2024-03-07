@@ -10,7 +10,7 @@ const batchController = require('../src/user/batch/batchController');
 const moduleController = require('../src/user/module/moduleController');
 const paymentController = require('../src/user/payment/paymentController');
 const facultyController = require('../src/user/faculty/facultyController');
-
+const timetableController = require('../src/user/timetable/timetableController');
 // User Routes
 router.post('/login', loginController.loginUserControllerFn);
 router.post('/login/save', loginController.saveLoginControllerFn);
@@ -48,9 +48,11 @@ router.patch('/faculty/update/:id', facultyController.facultyUpdateUserControlle
 
 
 //timetable
-const timetableController = require('../src/user/timetable/timetableController');
-router.route('/timetable/create').post(timetableController.timetableCreateUserControllerFn);
-router.route('/timetable/getAll').get(timetableController.timetableGetDataControllerFn);
+
+router.post('/timetable/create', timetableController.timetableCreateControllerFn);
+router.get('/timetable/getAll', timetableController.timetableGetDataControllerFn);
+router.get('/timetable', timetableController.timetableGetDataByLecturerNameControllerFn);
+
 
 module.exports = router;
 

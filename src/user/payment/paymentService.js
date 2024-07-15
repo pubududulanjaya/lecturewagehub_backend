@@ -12,6 +12,8 @@ module.exports.createUserDBService = (userDetails) => {
         var userModelData = new userModel();
 
         userModelData.LecturerName = userDetails.LecturerName;
+        userModelData.date = userDetails.date;
+        userModelData.day = userDetails.day;
         userModelData.Description = userDetails.Description;
         userModelData.TotalPayments = userDetails.TotalPayments;
 
@@ -30,6 +32,8 @@ module.exports.createUserDBService = (userDetails) => {
         var userModelData = new userModel();
 
         userModelData.LecturerName = userDetails.LecturerName;
+        userModelData.date = userDetails.date;
+        userModelData.day = userDetails.day;
         userModelData.Description = userDetails.Description;
         userModelData.TotalPayments = userDetails.TotalPayments;
 

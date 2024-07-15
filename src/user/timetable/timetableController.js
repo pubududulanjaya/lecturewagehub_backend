@@ -34,3 +34,33 @@ exports.timetableGetDataControllerFn = async (req, res) => {
         res.status(500).send({ "status": false, "message": "Internal Server Error" });
     }
 };
+
+exports.updateTimetableControllerFn = async (req, res) => {
+    try {
+        const _id = req.params._id;
+        const timetableDetails = req.body;
+        const updatedTimetable = await timetableService.updateUserDBService(_id, timetableDetails);
+        if (updatedTimetable) {
+            res.send({ "status": true, "message": "Timetable updated successfully", "data": updatedTimetable });
+        } else {
+            res.status(404).send({ "status": false, "message": "Timetable not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ "status": false, "message": "Internal Server Error" });
+    }
+};
+exports.deleteTimetableControllerFn = async (req, res) => {
+    try {
+        const _id = req.params._id;
+        const deletedTimetable = await timetableService.deleteTimetableService(_id);
+        if (deletedTimetable) {
+            res.send({ "status": true, "message": "Timetable deleted successfully", "data": deletedTimetable });
+        } else {
+            res.status(404).send({ "status": false, "message": "Timetable not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ "status": false, "message": "Internal Server Error" });
+    }
+};

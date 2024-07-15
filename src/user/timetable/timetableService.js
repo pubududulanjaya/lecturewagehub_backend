@@ -28,21 +28,43 @@ exports.getDataFromDBService = async () => {
         throw error;
     }
 };
-
-exports.updateUserDBService = async (id, timetableDetails) => {
+exports.updateTimetableService = async (_id, timetableDetails) => {
     try {
-        return await timetableModel.findByIdAndUpdate(id, timetableDetails, { new: true });
+        const updatedTimetable = await timetableModel.findByIdAndUpdate(_id, timetableDetails, { new: true }).exec();
+        return updatedTimetable;
     } catch (error) {
         console.error(error);
         throw error;
     }
 };
 
-exports.removeUserDBService = async (id) => {
+exports.deleteTimetableService = async (_id) => {
     try {
-        return await timetableModel.findByIdAndDelete(id);
+        const deletedTimetable = await timetableModel.findByIdAndDelete(_id).exec();
+        return deletedTimetable;
     } catch (error) {
         console.error(error);
         throw error;
     }
+};
+
+exports.calculateSalaryAndHours = (timetables) => {
+    let totalSalary = 0;
+    let totalHours = 0;
+
+    timetables.forEach(timetable => {
+        const startTime = new Date(timetable.start_time);
+        const endTime = new Date(timetable.end_time);
+        const hoursWorked = (endTime - startTime) / (1000 * 60 * 60);
+
+        const salary = hoursWorked * parseInt(timetable.RatePerHour);
+
+        totalSalary += salary;
+        totalHours += hoursWorked;
+
+        timetable.salary = salary;
+        timetable.hoursWorked = hoursWorked;
+    });
+
+    return { totalSalary, totalHours };
 };

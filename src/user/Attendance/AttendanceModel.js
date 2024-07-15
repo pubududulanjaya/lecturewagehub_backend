@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const attendanceSchema = new mongoose.Schema({
     date: {
         type: String,
         required: true
@@ -40,12 +39,6 @@ const userSchema = new Schema({
     
     },
 
-    // MonthlyPayment:{
-    //     type:String,
-    //     required:true
-    
-    // },
-
     pay_status:{
         type:String,
         required:true
@@ -53,4 +46,6 @@ const userSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Timetable', userSchema);
+const Attendance = mongoose.model('Attendance', attendanceSchema);
+
+module.exports = Attendance;

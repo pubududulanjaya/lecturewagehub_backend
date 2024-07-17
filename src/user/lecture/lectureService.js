@@ -27,6 +27,10 @@ module.exports.createUserDBService = (userDetails) => {
         userModelData.bankCode = userDetails.bankCode;
         userModelData.BranchName = userDetails.BranchName;
         userModelData.BranchCode = userDetails.BranchCode;
+        userModelData.Request_State = userDetails.Request_State;
+        userModelData.Department = userDetails.Department;
+       
+
 
         userModelData.save()
             .then(result => {
@@ -43,7 +47,7 @@ module.exports.createUserDBService = (userDetails) => {
 module.exports.updateUserDBService = (Id, userDetails) => {
     console.log(userDetails);
     return new Promise(function myFn(resolve, reject) {
-        userModel.findByIdAndUpdate(Id, userDetails, { new: true }) // { new: true } returns the updated document
+        userModel.findByIdAndUpdate(Id, userDetails, { new: true })
             .then(result => {
                 resolve(result);
             })

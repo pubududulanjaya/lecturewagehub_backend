@@ -1,7 +1,5 @@
 var userService = require('./batchService');
 
-
-
 var batchcreateUserControllerFn = async (req, res) => 
 {
     var status = await userService.createUserDBService(req.body);
@@ -12,5 +10,4 @@ var batchcreateUserControllerFn = async (req, res) =>
     }
 }
 
-
-module.exports = { batchcreateUserControllerFn, };
+module.exports = { batchcreateUserControllerFn };

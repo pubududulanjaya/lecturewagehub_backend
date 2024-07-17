@@ -12,5 +12,14 @@ var paymentcreateUserControllerFn = async (req, res) =>
     }
 }
 
+var getPaymentsByLecturerNameControllerFn = async (req, res) => {
+    var LecturerName = req.query.LecturerName;
+    var payments = await userService.getPaymentsByLecturerNameService(LecturerName);
 
-module.exports = { paymentcreateUserControllerFn, };
+    if (payments) {
+        res.send(payments);
+    } else {
+        res.status(404).send({ "status": false, "message": "Payments not found" });
+    }
+}
+module.exports = { paymentcreateUserControllerFn,getPaymentsByLecturerNameControllerFn };

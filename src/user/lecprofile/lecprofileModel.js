@@ -2,28 +2,39 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-
     LecturerName: {
         type: String,
         required: true
     },
-    date: {
-        type: String,
-        required: true
-    }, day: {
+    MonthlyPayment: {
         type: String,
         required: true
     },
-    Description: {
+    RatePerHour: {
         type: String,
         required: true
     },
-    TotalPayments: {
+    Department: {
         type: String,
         required: true
     },
-   
+    TotalHours: {
+        type: String,
+        required: true
+    },
+    totalNetAmountPaid: {
+        type: String,
+        required: true
+    },
+    selectedMonth: {
+        type: String,
+        required: true
+    },
+    selectedYear: {
+        type: String,
+        required: true
+    },
    
 });
 
-module.exports = mongoose.model('payment', userSchema);
+module.exports = mongoose.model('lecprofile', userSchema);

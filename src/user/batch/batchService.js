@@ -10,23 +10,7 @@ module.exports.createUserDBService = (userDetails) => {
 
         userModelData.DegreeName = userDetails.DegreeName;
         userModelData.BatchNo = userDetails.BatchNo;
-
-        userModelData.save()
-            .then(result => {
-                resolve(result);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
-
-module.exports.createUserDBService = (userDetails) => {
-    return new Promise(function myFn(resolve, reject) {
-        var userModelData = new userModel();
-
-        userModelData.DegreeName = userDetails.DegreeName;
-        userModelData.BatchNo = userDetails.BatchNo;
+        userModelData.Department = userDetails.Department;
 
         userModelData.save()
             .then(result => {
@@ -39,9 +23,8 @@ module.exports.createUserDBService = (userDetails) => {
 }
 
 module.exports.updateUserDBService = (id, userDetails) => {
-    console.log(userDetails);
     return new Promise(function myFn(resolve, reject) {
-        userModel.findByIdAndUpdate(id, userDetails, { new: true }) // { new: true } returns the updated document
+        userModel.findByIdAndUpdate(id, userDetails, { new: true })
             .then(result => {
                 resolve(result);
             })
